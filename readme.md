@@ -23,9 +23,21 @@ This repository's sole purpose is to demonstrate how to built a AWS with Packer 
 - Start Vagrant with VirtualBox provider by executing `vagrant up`.
 - SSH into the Vagrant box with `vagrant ssh`
 - Change into directory ~/buildDir with `cd ~/buildDir`.
-- Set your AWS keys in either way:
-  - Run `packer build packer build -var 'aws_access_key=YOUR_AWS_KEY' -var 'aws_secret_key=YOUR_AWS_SECRET_KEY' templateAWS.json`.
-  - Set them using environment variables using : `export AWS_ACCESS_KEY_ID=YOUR_AWS_KEY` and `export AWS_SECRET_ACCESS_KEY=YOUR_AWS_SECRET_KEY`.
+- Set variables for `AWS_SECRET_ACCESS_KEY` and `AWS_ACCESS_KEY_ID`, this can be done like:
+1. As argument to `packer` commmand:
+
+```bash
+packer build packer build -var 'aws_access_key=YOUR_AWS_KEY' -var 'aws_secret_key=YOUR_AWS_SECRET_KEY' templateAWS.json
+```
+
+or 
+
+2. set them using environment variables using : 
+```bash
+export AWS_ACCESS_KEY_ID=YOUR_AWS_KEY
+export AWS_SECRET_ACCESS_KEY=YOUR_AWS_SECRET_KEY
+```
+
 - If AWS keys are set using environment variables, use `packer build templateAWS.json`.
 - After Packer finishes successfully, your AMI image can be found in AMIs section for `us-east-1` region.
 - The `templateAWS.json` contains instructions for Packer builders how to install Nginx webserver.
